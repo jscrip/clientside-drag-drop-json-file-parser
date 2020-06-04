@@ -27,12 +27,12 @@ const fileToString = (inputFile) => {
 const dropHandler = async (e) => {
 	e.preventDefault(); //disable default drop behavior
   for await (var file of e.dataTransfer.files) { //loop through dropped files
-			try {
-				var name = file.name.replace(".csv","");
-				const str = await fileToString(file); //convert dropped file to string
-				const data = await JSON.parse(str); //convert file string to json
-				console.log({name,data});  /*do stuff with the JSON data*/
-			} catch (err) {console.log({err})}
+	try {
+		let name = file.name.replace(".csv","");
+		const str = await fileToString(file); //convert dropped file to string
+		const data = await JSON.parse(str); //convert file string to json
+		console.log({name,data});  /*do stuff with the JSON data*/
+	} catch (err) {console.log({err})}
    }}
 window.ondragover = (e) => e.preventDefault(); //Prevent default browser behavior
 window.ondrop = (e) => dropHandler(e); //Handle dropped files
