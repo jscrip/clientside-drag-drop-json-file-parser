@@ -5,12 +5,12 @@
  ### Quick Test
     Copy and paste the code (below) directly into the console.
  ### Deploy
-  Wrap it in HTML script tags
+    Wrap it in HTML script tags
 
 ## Usage:
-  No special permissions or dependencies required.
-  Once loaded, simply drag & drop local JSON files anywhere on the active page. 
-  On success, the JSON data should be logged to the developer console. Feel free to customize it there.
+    No special permissions or dependencies required.
+    Once loaded, simply drag & drop local JSON files anywhere on the active page. 
+    On success, the JSON data should be logged to the developer console. Feel free to customize it there.
 
 ## Warning
 ### not thoroughly tested - use at your own risk.
