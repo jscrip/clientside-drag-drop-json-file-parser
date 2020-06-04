@@ -39,3 +39,31 @@ window.ondragover = (e) => e.preventDefault(); //Prevent default browser behavio
 window.ondrop = (e) => dropHandler(e); //Handle dropped files
 })();
 ```
+## Same code + timer on the drop handler
+```javascript
+(() => {
+const fileToString = (inputFile) => {
+	const fr = new FileReader();
+	return new Promise((resolve, reject) => {
+		fr.onerror = () => { fr.abort(); reject(new DOMException("Problem parsing input file."));} //handle file read error
+		fr.onload = () => resolve(fr.result); //resolve promise once the file is loaded
+		fr.readAsText(inputFile); //read the file as plain text. On success, the promise resolves, passign the result back to the dropHandler function
+})}
+const dropHandler = async (e) => {
+	
+	e.preventDefault(); //disable default drop behavior
+  for await (let file of e.dataTransfer.files) { //loop through dropped files
+	try {
+		const t0 = performance.now();	
+		let name = file.name.replace(".csv","");
+		const str = await fileToString(file); //convert dropped file to string
+		const data = await JSON.parse(str); //convert file string to json
+		const t1 = performance.now();
+		const parseTime = `${t1 - t0} milliseconds.`;
+		console.log({name,data,parseTime});  /*do stuff with the JSON data*/	
+	} catch (err) {console.log({err})}
+ }}
+window.ondragover = (e) => e.preventDefault(); //Prevent default browser behavior
+window.ondrop = (e) => dropHandler(e); //Handle dropped files
+})();
+```
