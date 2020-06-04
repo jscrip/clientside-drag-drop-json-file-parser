@@ -17,6 +17,7 @@
 I use modern Firefox. I'm not concerned about cross-browser compatibility since it suits my needs, but let me know if you run into issues. I might be able to help.
 
 ```javascript
+(() => {
 const fileToString = (inputFile) => {
 	const fr = new FileReader();
 	return new Promise((resolve, reject) => {
@@ -26,7 +27,7 @@ const fileToString = (inputFile) => {
 })}
 const dropHandler = async (e) => {
 	e.preventDefault(); //disable default drop behavior
-  for await (var file of e.dataTransfer.files) { //loop through dropped files
+  for await (let file of e.dataTransfer.files) { //loop through dropped files
 	try {
 		let name = file.name.replace(".csv","");
 		const str = await fileToString(file); //convert dropped file to string
@@ -36,4 +37,5 @@ const dropHandler = async (e) => {
    }}
 window.ondragover = (e) => e.preventDefault(); //Prevent default browser behavior
 window.ondrop = (e) => dropHandler(e); //Handle dropped files
+})();
 ```
