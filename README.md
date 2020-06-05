@@ -8,9 +8,9 @@ Results are logged to the console
 
 ## Deployment Options
  ### Add to an HTML Page:
-  ### a) Wrap it in HTML script tags
-  ### b) save it as a .js file and load it externally 
-  ### c) adapt it to work as a userscript (tampermonkey/greasemonkey)
+	a) Wrap it in HTML <script> tags
+	b) Save it as a .js file and load it externally 
+	c) Adapt it to work as a userscript (for browser extension like tampermonkey & greasemonkey)
     
 ## Usage:
 	No special permissions or dependencies required.
