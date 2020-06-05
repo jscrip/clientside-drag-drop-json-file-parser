@@ -1,21 +1,23 @@
 # Drag & Drop JSON File Parser for the Browser
- Parse JSON Files in the Browser 100% Client Side. No frills JSON file parsing with only 20-30 lines of code  
+ Parse JSON Files in the Browser 100% Client Side. No frills JSON file parsing with only 20-30 lines of code.  
 
 ## Testing & Deployment
  ### Quick Test
-    Copy and paste the code (below) directly into the console.
+    Copy and paste the code (below) and paste it directly into the browser console.
+    If the code was injected successfully, drag & drop one or more JSON files anywhere.
  ### Deploy
     Wrap it in HTML script tags
 
 ## Usage:
     No special permissions or dependencies required.
-    Once loaded, simply drag & drop local JSON files anywhere on the active page. 
-    On success, the JSON data should be logged to the developer console. Feel free to customize it there.
+    Once loaded, simply drag & drop one or more JSON files anywhere on the page. 
+    On success, parsed JSON data should be logged to the developer console. Feel free to customize it there.
 
-## Warning
-### not thoroughly tested - use at your own risk.
-I use modern Firefox. I'm not concerned about cross-browser compatibility since it suits my needs, but let me know if you run into issues. I might be able to help.
-
+## Warnings, Disclainers, and Gotchas
+### Not Battle Ready - lightly tested, use at your own risk.
+Tested on a modern version of Firefox on Windows. At the moment, I'm not concerned about cross-browser compatibility since it suits my needs, but let me know if you run into issues. I might be able to help.
+### To avoid crashing the browser, file lists are parsed sequentially.
+Tip: Need to parse the whole list before moving on? Adapting this script to use promise.all() should be fairly straight forward.
 ```javascript
 (() => {
 const fileToString = (inputFile) => {
