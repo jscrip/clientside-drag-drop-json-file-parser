@@ -35,7 +35,7 @@ const dropHandler = async (e) => {
 	e.preventDefault(); //disable default drop behavior
   for await (let file of e.dataTransfer.files) { //loop through dropped files
 	try {
-		let name = file.name.replace(".csv","");
+		let name = file.name.replace(".json","");
 		const str = await fileToString(file); //convert dropped file to string
 		const data = await JSON.parse(str); //convert file string to json
 		console.log({name,data});  /*do stuff with the JSON data*/
@@ -61,7 +61,7 @@ const dropHandler = async (e) => {
   for await (let file of e.dataTransfer.files) { //loop through dropped files
 	try {
 		const t0 = performance.now();	
-		let name = file.name.replace(".csv","");
+		let name = file.name.replace(".json","");
 		const str = await fileToString(file); //convert dropped file to string
 		const data = await JSON.parse(str); //convert file string to json
 		const t1 = performance.now();
