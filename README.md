@@ -3,19 +3,19 @@
 
 ## Testing & Deployment
  ### Quick Test
-    Copy and paste the code (below) and paste it directly into the browser console.
-    If the code was injected successfully, drag & drop one or more JSON files anywhere.
-    Results are logged to the console
+Copy and paste the code (below) and paste it directly into the browser console.
+If the code was injected successfully, drag & drop one or more JSON files anywhere.
+Results are logged to the console
  ### Deployment Options
-    Add to an HTML Page:
-    	a) Wrap it in HTML <script> tags
-	b) save it as a .js file and load it externally 
-	c) adapt it to work as a userscript (tampermonkey/greasemonkey)
+Add to an HTML Page:
+a) Wrap it in HTML <script> tags
+b) save it as a .js file and load it externally 
+c) adapt it to work as a userscript (tampermonkey/greasemonkey)
     
 ## Usage:
-    No special permissions or dependencies required.
-    Once loaded, simply drag & drop one or more JSON files anywhere on the page. 
-    On success, parsed JSON data should be logged to the developer console. Feel free to customize it there.
+No special permissions or dependencies required.
+Once loaded, simply drag & drop one or more JSON files anywhere on the page. 
+On success, parsed JSON data should be logged to the developer console. Feel free to customize it there.
 
 ## Warnings, Disclainers, and Gotchas
 ### Not Battle Ready - lightly tested, use at your own risk.
