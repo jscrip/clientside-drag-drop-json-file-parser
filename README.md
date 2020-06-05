@@ -73,3 +73,78 @@ window.ondragover = (e) => e.preventDefault(); //Prevent default browser behavio
 window.ondrop = (e) => dropHandler(e); //Handle dropped files
 })();
 ```
+## This demo integrates d3.js to parse CSV files. 
+	Supported File Types: json,csv,txt
+	Note: txt files must be delimited by one of the following (ordered by priority):
+		1) lines:  "\n"
+		2) tabs:   "\t"		
+		3) commas: ","
+
+```javascript
+(() => {
+	
+	var options = {
+		scripts: ["https://d3js.org/d3.v5.min.js"]
+	}
+
+const fileToString = (inputFile) => {
+	const fr = new FileReader();
+	return new Promise((resolve, reject) => {
+		fr.onerror = () => { fr.abort(); reject(new DOMException("Problem parsing input file."));} //handle file read error
+		fr.onload = () => resolve(fr.result); //resolve promise once the file is loaded
+		fr.readAsText(inputFile); //read the file as plain text. On success, the promise resolves, passign the result back to the dropHandler function
+})}
+const dropHandler = async (e) => {
+	e.preventDefault(); //disable default drop behavior
+  for await (let file of e.dataTransfer.files) { //loop through dropped files
+	try {
+		const str = await fileToString(file); //convert dropped file to string
+		let format = file.name.slice(file.name.lastIndexOf(".")+1); //get assumed format from file name
+		var name = file.name.replace("."+format,"");
+		if(format == "json"){
+			var data = await JSON.parse(str); //convert file string to json
+		}else if(format == "txt"){
+			var hasLines = str.indexOf("\n") > -1;
+			var hasComma = str.indexOf(",") > -1;
+			var hasTab = str.indexOf("\t") > -1;
+			if(hasLines){
+				var data = await str.split("\n"); //split line-delimited list
+			} else if(hasTab){
+					var data = await str.split("\t"); //split tab-delimited list
+			}	else if(hasComma){
+					var data = await str.split(","); //split comma-delimited list
+			} 
+		}else if(format == "csv"){
+			var data = await d3.csvParse(str) //convert csv string to json
+		}
+
+		console.log({name,format,data});  /*do stuff with the JSON data*/	
+	} catch (err) {console.log({err})}
+ }}
+ 
+window.ondragover = (e) => e.preventDefault(); //Prevent default browser behavior
+window.ondrop = (e) => dropHandler(e); //Handle dropped files
+
+const loadScripts = (scripts) => {
+	console.log(`Loading External Scripts`);
+	var scriptCountdown = scripts.length;
+	var loadScript = (url) => {
+		var scriptsLoaded = () => {
+			console.log({scriptsLoaded:scriptCountdown});
+			scriptCountdown == 0 ? console.log("External scripts loaded. Ready to parse!") : null;
+			return true;
+		}
+		console.log("loadScript",{url})
+		var imported = document.createElement('script');
+				imported.src = url;
+				imported.addEventListener("load", () => {
+					scriptCountdown--;
+					scriptsLoaded();
+				});
+				document.head.appendChild(imported);
+	}
+	scripts.forEach(loadScript)
+}
+loadScripts(options.scripts);
+})();
+```
