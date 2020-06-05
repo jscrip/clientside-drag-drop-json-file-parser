@@ -5,9 +5,13 @@
  ### Quick Test
     Copy and paste the code (below) and paste it directly into the browser console.
     If the code was injected successfully, drag & drop one or more JSON files anywhere.
- ### Deploy
-    Wrap it in HTML script tags
-
+    Results are logged to the console
+ ### Deployment Options
+    Add to an HTML Page:
+    	a) Wrap it in HTML <script> tags
+	b) save it as a .js file and load it externally 
+	c) adapt it to work as a userscript (tampermonkey/greasemonkey)
+    
 ## Usage:
     No special permissions or dependencies required.
     Once loaded, simply drag & drop one or more JSON files anywhere on the page. 
