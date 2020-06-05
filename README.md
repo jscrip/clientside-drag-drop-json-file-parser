@@ -1,5 +1,5 @@
 # Drag & Drop JSON File Parser for the Browser
- Parse JSON Files in the Browser 100% Client Side. No frills JSON file parsing with only 20-30 lines of code.  
+ Parse JSON Files in the Browser (100% Client Side). Lightweight Vanilla JavaScript (~30 lines of code).  
 
 ## Testing & Deployment
  ### Quick Test
